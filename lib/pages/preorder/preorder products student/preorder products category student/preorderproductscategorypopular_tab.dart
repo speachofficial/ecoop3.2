@@ -86,182 +86,186 @@ class _PopularContentState extends State<PopularContent> {
                             isScrollControlled: true,
                             context: context,
                             builder: (BuildContext context) {
-                              return Container(
-                                height: 1318.h,
-                                width: 1620.w,
-                                decoration: BoxDecoration(
-                                  color: AppColors.cFFFFFF_100,
-                                  borderRadius: BorderRadius.vertical(
-                                      top: Radius.circular(50.r)),
-                                ),
-                                child: Column(
-                                  children: [
-                                    Container(
-                                      width: 1620.w,
-                                      height: 778.h,
-                                      decoration: BoxDecoration(
-                                          borderRadius: BorderRadius.vertical(
-                                              top: Radius.circular(50.r)),
-                                          image: DecorationImage(
-                                              image: NetworkImage(
-                                                snapshot.data!.docs[index]
-                                                    .get("url"),
-                                              ),
-                                              fit: BoxFit.cover)),
-                                    ),
-                                    SizedBox(
-                                      height: 48.h,
-                                    ),
-                                    Padding(
-                                      padding: EdgeInsets.symmetric(
-                                          horizontal: 203.h),
-                                      child: Column(
-                                        children: [
-                                          ListTile(
-                                            title: SmallText(
-                                              text: snapshot.data!.docs[index]
-                                                  .get("name"),
-                                              size: 50.sp,
-                                              color: AppColors.c000000_100,
-                                              fontWeight: FontWeight.w600,
-                                            ),
-                                            trailing: SmallText(
-                                              text:
-                                                  'RM ${snapshot.data!.docs[index].get("RM").toStringAsFixed(2)}',
-                                              size: 50.sp,
-                                              color: AppColors.c000000_100,
-                                              fontWeight: FontWeight.w600,
-                                            ),
-                                          ),
-                                          SizedBox(
-                                            height: 171.h,
-                                          ),
-                                          Row(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.center,
-                                            children: [
-                                              SizedBox(
-                                                height: 100.h,
-                                                width: 360.w,
-                                                child: Row(
-                                                  mainAxisAlignment:
-                                                      MainAxisAlignment
-                                                          .spaceBetween,
-                                                  children: [
-                                                    SizedBox(
-                                                        height: 100.h,
-                                                        width: 100.h,
-                                                        child:
-                                                            FloatingActionButton(
-                                                          onPressed: () {
-                                                            setState(() {
-                                                              if (additemvalue >
-                                                                  1) {
-                                                                additemvalue--;
-                                                              }
-                                                            });
-                                                          },
-                                                          backgroundColor:
-                                                              AppColors
-                                                                  .cD9D9D9_100,
-                                                          elevation: 0,
-                                                          child: Icon(
-                                                            Icons.remove,
-                                                            size: 63.sp,
-                                                            color: AppColors
-                                                                .c000000_100,
-                                                          ),
-                                                        )),
-                                                    SmallText(
-                                                      text: '$additemvalue',
-                                                      size: 64.sp,
-                                                      color:
-                                                          AppColors.c000000_100,
-                                                      fontWeight:
-                                                          FontWeight.bold,
-                                                    ),
-                                                    SizedBox(
-                                                        height: 100.h,
-                                                        width: 100.h,
-                                                        child:
-                                                            FloatingActionButton(
-                                                          onPressed: () {
-                                                            setState(() {
-                                                              additemvalue++;
-                                                            });
-                                                          },
-                                                          backgroundColor:
-                                                              AppColors
-                                                                  .cC8151D_100,
-                                                          elevation: 0,
-                                                          child: Icon(
-                                                            Icons.add,
-                                                            size: 63.sp,
-                                                            color: AppColors
-                                                                .cFFFFFF_100,
-                                                          ),
-                                                        ))
-                                                  ],
+                              return StatefulBuilder(builder:
+                                  (BuildContext context, StateSetter setState) {
+                                return Container(
+                                  height: 1318.h,
+                                  width: 1620.w,
+                                  decoration: BoxDecoration(
+                                    color: AppColors.cFFFFFF_100,
+                                    borderRadius: BorderRadius.vertical(
+                                        top: Radius.circular(50.r)),
+                                  ),
+                                  child: Column(
+                                    children: [
+                                      Container(
+                                        width: 1620.w,
+                                        height: 778.h,
+                                        decoration: BoxDecoration(
+                                            borderRadius: BorderRadius.vertical(
+                                                top: Radius.circular(50.r)),
+                                            image: DecorationImage(
+                                                image: NetworkImage(
+                                                  snapshot.data!.docs[index]
+                                                      .get("url"),
                                                 ),
-                                              ),
-                                              SizedBox(
-                                                width: 175.w,
-                                              ),
-                                              SizedBox(
-                                                height: 150.h,
-                                                width: 675.w,
-                                                child: ElevatedButton(
-                                                    onPressed: () {
-                                                      FirebaseFirestore.instance
-                                                          .collection('Users')
-                                                          .doc(userid)
-                                                          .collection('cart')
-                                                          .doc(snapshot
-                                                              .data!.docs[index]
-                                                              .get("name"))
-                                                          .set({
-                                                        'item name': snapshot
-                                                            .data!.docs[index]
-                                                            .get("name"),
-                                                        'quantity':
-                                                            additemvalue,
-                                                        'price': snapshot
-                                                            .data!.docs[index]
-                                                            .get("RM"),
-                                                        'total RM': snapshot
-                                                                .data!
-                                                                .docs[index]
-                                                                .get("RM") *
-                                                            additemvalue
-                                                      });
-                                                      done(context);
-                                                    },
-                                                    style: ElevatedButton.styleFrom(
-                                                        shape: RoundedRectangleBorder(
-                                                            borderRadius:
-                                                                BorderRadius
-                                                                    .circular(
-                                                                        25.r)),
-                                                        backgroundColor:
-                                                            AppColors
-                                                                .cC8151D_100),
-                                                    child: SmallText(
-                                                      text: 'Add to cart',
-                                                      size: 48.sp,
-                                                      color:
-                                                          AppColors.cFFFFFF_100,
-                                                      fontWeight:
-                                                          FontWeight.bold,
-                                                    )),
-                                              )
-                                            ],
-                                          )
-                                        ],
+                                                fit: BoxFit.cover)),
                                       ),
-                                    )
-                                  ],
-                                ),
-                              );
+                                      SizedBox(
+                                        height: 48.h,
+                                      ),
+                                      Padding(
+                                        padding: EdgeInsets.symmetric(
+                                            horizontal: 203.h),
+                                        child: Column(
+                                          children: [
+                                            ListTile(
+                                              title: SmallText(
+                                                text: snapshot.data!.docs[index]
+                                                    .get("name"),
+                                                size: 50.sp,
+                                                color: AppColors.c000000_100,
+                                                fontWeight: FontWeight.w600,
+                                              ),
+                                              trailing: SmallText(
+                                                text:
+                                                    'RM ${snapshot.data!.docs[index].get("RM").toStringAsFixed(2)}',
+                                                size: 50.sp,
+                                                color: AppColors.c000000_100,
+                                                fontWeight: FontWeight.w600,
+                                              ),
+                                            ),
+                                            SizedBox(
+                                              height: 171.h,
+                                            ),
+                                            Row(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.center,
+                                              children: [
+                                                SizedBox(
+                                                  height: 100.h,
+                                                  width: 360.w,
+                                                  child: Row(
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment
+                                                            .spaceBetween,
+                                                    children: [
+                                                      SizedBox(
+                                                          height: 100.h,
+                                                          width: 100.h,
+                                                          child:
+                                                              FloatingActionButton(
+                                                            onPressed: () {
+                                                              setState(() {
+                                                                if (additemvalue >
+                                                                    1) {
+                                                                  additemvalue--;
+                                                                }
+                                                              });
+                                                            },
+                                                            backgroundColor:
+                                                                AppColors
+                                                                    .cD9D9D9_100,
+                                                            elevation: 0,
+                                                            child: Icon(
+                                                              Icons.remove,
+                                                              size: 63.sp,
+                                                              color: AppColors
+                                                                  .c000000_100,
+                                                            ),
+                                                          )),
+                                                      SmallText(
+                                                        text: '$additemvalue',
+                                                        size: 64.sp,
+                                                        color: AppColors
+                                                            .c000000_100,
+                                                        fontWeight:
+                                                            FontWeight.bold,
+                                                      ),
+                                                      SizedBox(
+                                                          height: 100.h,
+                                                          width: 100.h,
+                                                          child:
+                                                              FloatingActionButton(
+                                                            onPressed: () {
+                                                              setState(() {
+                                                                additemvalue++;
+                                                              });
+                                                            },
+                                                            backgroundColor:
+                                                                AppColors
+                                                                    .cC8151D_100,
+                                                            elevation: 0,
+                                                            child: Icon(
+                                                              Icons.add,
+                                                              size: 63.sp,
+                                                              color: AppColors
+                                                                  .cFFFFFF_100,
+                                                            ),
+                                                          ))
+                                                    ],
+                                                  ),
+                                                ),
+                                                SizedBox(
+                                                  width: 175.w,
+                                                ),
+                                                SizedBox(
+                                                  height: 150.h,
+                                                  width: 675.w,
+                                                  child: ElevatedButton(
+                                                      onPressed: () {
+                                                        FirebaseFirestore
+                                                            .instance
+                                                            .collection('Users')
+                                                            .doc(userid)
+                                                            .collection('cart')
+                                                            .doc(snapshot.data!
+                                                                .docs[index]
+                                                                .get("name"))
+                                                            .set({
+                                                          'item name': snapshot
+                                                              .data!.docs[index]
+                                                              .get("name"),
+                                                          'quantity':
+                                                              additemvalue,
+                                                          'price': snapshot
+                                                              .data!.docs[index]
+                                                              .get("RM"),
+                                                          'total RM': snapshot
+                                                                  .data!
+                                                                  .docs[index]
+                                                                  .get("RM") *
+                                                              additemvalue
+                                                        });
+                                                        done(context);
+                                                      },
+                                                      style: ElevatedButton.styleFrom(
+                                                          shape: RoundedRectangleBorder(
+                                                              borderRadius:
+                                                                  BorderRadius
+                                                                      .circular(25
+                                                                          .r)),
+                                                          backgroundColor:
+                                                              AppColors
+                                                                  .cC8151D_100),
+                                                      child: SmallText(
+                                                        text: 'Add to cart',
+                                                        size: 48.sp,
+                                                        color: AppColors
+                                                            .cFFFFFF_100,
+                                                        fontWeight:
+                                                            FontWeight.bold,
+                                                      )),
+                                                )
+                                              ],
+                                            )
+                                          ],
+                                        ),
+                                      )
+                                    ],
+                                  ),
+                                );
+                              });
                             });
                       },
                       child: Container(
