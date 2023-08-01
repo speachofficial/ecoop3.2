@@ -17,7 +17,7 @@ DateTime initialTime = now.isBefore(minTime) ? minTime : minDate;
 
 String paymentmethod = 'Cash';
 
-int processingfee = 1;
+int processingfee = 0;
 int discount = 0;
 
 var userid = FirebaseAuth.instance.currentUser?.uid;
