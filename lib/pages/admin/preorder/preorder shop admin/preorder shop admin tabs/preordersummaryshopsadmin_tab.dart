@@ -1,14 +1,10 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:ecoop3/widgets/empty.dart';
-import 'package:ecoop3/widgets/loadinghairil.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:intl/intl.dart';
 
 import '../../../../../utils/colors.dart';
 import '../../../../../utils/my_package.dart';
-import '../../../../../widgets/smalltext.dart';
 import 'today.dart';
 import 'tommorow.dart';
 
