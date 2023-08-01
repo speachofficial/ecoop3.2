@@ -31,7 +31,6 @@ class MyShopSummaryContent extends StatelessWidget {
         FutureBuilder<QuerySnapshot>(
           future: FirebaseFirestore.instance
               .collection('preorder_products')
-              .where('instock', isEqualTo: true)
               .get(),
           builder: (BuildContext context,
               AsyncSnapshot<QuerySnapshot> productsnapshot) {
