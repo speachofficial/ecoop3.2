@@ -203,7 +203,7 @@ class MyShopOrdersContent extends StatelessWidget {
                                                         ),
                                                         trailing: SmallText(
                                                           text: DateFormat(
-                                                                  'HH:mm a')
+                                                                  'dd/MM/yy hh:mm a')
                                                               .format(snapshot
                                                                   .data!
                                                                   .docs[index]
@@ -661,7 +661,7 @@ class MyShopOrdersContent extends StatelessWidget {
                               color: AppColors.c000000_50,
                             ),
                             SmallText(
-                              text: DateFormat('HH:mm a').format(snapshot
+                              text: DateFormat('dd/MM/yy hh:mm a').format(snapshot
                                   .data!.docs[index]
                                   .get("PickupTime")
                                   .toDate()),

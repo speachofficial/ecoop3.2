@@ -188,7 +188,7 @@ class MyHistoryToReceiveContent extends StatelessWidget {
                                                         ),
                                                         trailing: SmallText(
                                                           text: DateFormat(
-                                                                  'hh:mm a - 11:30 a (d/M)')
+                                                                  'dd/MM/yy hh:mm a')
                                                               .format(snapshot
                                                                   .data!
                                                                   .docs[index]

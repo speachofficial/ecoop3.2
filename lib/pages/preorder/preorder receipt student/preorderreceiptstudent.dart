@@ -130,7 +130,7 @@ class _MainOrderPageContentState extends State<MainOrderPageContent> {
                             fontWeight: FontWeight.w500,
                           ),
                           trailing: SmallText(
-                            text: DateFormat('hh:mm a - 11:30 a (d/M)').format(
+                            text: DateFormat('dd/MM/yy hh:mm a').format(
                                 snapshot.data!.get('PickupTime').toDate()),
                             size: 40.sp,
                             color: AppColors.c000000_60,
