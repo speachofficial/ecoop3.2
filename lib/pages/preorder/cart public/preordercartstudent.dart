@@ -18,57 +18,64 @@ class StudentCart extends StatelessWidget {
           future: getCartItems(),
           builder: (context, AsyncSnapshot<QuerySnapshot> snapshot) {
             if (snapshot.hasData && snapshot.data!.docs.isNotEmpty) {
-              return ListView.builder(
-                  shrinkWrap: true,
-                  physics: const NeverScrollableScrollPhysics(),
-                  itemCount: snapshot.data?.docs.length ?? 0,
-                  itemBuilder: ((context, index) {
-                    return Padding(
-                      padding: EdgeInsets.all(8.h),
-                      child: Dismissible(
-                        background: Container(
-                          color: AppColors.cC8151D_100,
-                        ),
-                        key: Key(snapshot.data!.docs[index].id),
-                        onDismissed: (DismissDirection direction) {
-                          snapshot.data!.docs[index].reference.delete();
-                        },
-                        child: ListTile(
-                          leading: Container(
-                            height: 100.h,
-                            width: 150.w,
-                            decoration: BoxDecoration(
-                                border: Border.all(
-                              color: AppColors.c000000_25,
-                              width: 5.w,
-                            )),
-                            child: Align(
-                                alignment: Alignment.center,
-                                child: SmallText(
-                                  text: snapshot.data!.docs[index]
-                                      .get("quantity")
-                                      .toString(),
-                                  size: 35.sp,
-                                  color: AppColors.c000000_100,
-                                  fontWeight: FontWeight.w500,
+              return Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  ListView.builder(
+                      shrinkWrap: true,
+                      physics: const NeverScrollableScrollPhysics(),
+                      itemCount: snapshot.data?.docs.length ?? 0,
+                      itemBuilder: ((context, index) {
+                        return Padding(
+                          padding: EdgeInsets.all(8.h),
+                          child: Dismissible(
+                            background: Container(
+                              color: AppColors.cC8151D_100,
+                            ),
+                            key: Key(snapshot.data!.docs[index].id),
+                            onDismissed: (DismissDirection direction) {
+                              snapshot.data!.docs[index].reference.delete();
+                            },
+                            child: ListTile(
+                              leading: Container(
+                                height: 100.h,
+                                width: 150.w,
+                                decoration: BoxDecoration(
+                                    border: Border.all(
+                                  color: AppColors.c000000_25,
+                                  width: 5.w,
                                 )),
+                                child: Align(
+                                    alignment: Alignment.center,
+                                    child: SmallText(
+                                      text: snapshot.data!.docs[index]
+                                          .get("quantity")
+                                          .toString(),
+                                      size: 35.sp,
+                                      color: AppColors.c000000_100,
+                                      fontWeight: FontWeight.w500,
+                                    )),
+                              ),
+                              title: SmallText(
+                                text:
+                                    snapshot.data!.docs[index].get("item name"),
+                                size: 48.sp,
+                                fontWeight: FontWeight.w600,
+                                color: AppColors.cC8151D_100,
+                              ),
+                              trailing: SmallText(
+                                text:
+                                    'RM ${snapshot.data!.docs[index].get("total RM").toStringAsFixed(2)}',
+                                size: 48.sp,
+                                color: AppColors.c000000_100,
+                              ),
+                            ),
                           ),
-                          title: SmallText(
-                            text: snapshot.data!.docs[index].get("item name"),
-                            size: 48.sp,
-                            fontWeight: FontWeight.w600,
-                            color: AppColors.cC8151D_100,
-                          ),
-                          trailing: SmallText(
-                            text:
-                                'RM ${snapshot.data!.docs[index].get("total RM").toStringAsFixed(2)}',
-                            size: 48.sp,
-                            color: AppColors.c000000_100,
-                          ),
-                        ),
-                      ),
-                    );
-                  }));
+                        );
+                      })),
+                  SmallText(text: 'Slide to delete', size: 22.sp),
+                ],
+              );
             } else {
               return Padding(
                 padding: EdgeInsets.all(8.h),
