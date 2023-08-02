@@ -274,6 +274,7 @@ class _PopularContentState extends State<PopularContent> {
                         width: 675.w,
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(20.r),
+                            color: AppColors.cC8151D_25,
                             image: DecorationImage(
                                 colorFilter: ColorFilter.mode(
                                     AppColors.c000000_100.withOpacity(0.3),

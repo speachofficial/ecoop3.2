@@ -69,7 +69,7 @@ class TodayOrders extends StatelessWidget {
                             width: 350.w,
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(20.r),
-                              color: Colors.amber,
+                              color: AppColors.cC8151D_25,
                               image: DecorationImage(
                                 image: NetworkImage(productsnapshot
                                     .data!.docs[index]

@@ -637,6 +637,7 @@ class _MyShopProductContentState extends State<MyShopProductContent> {
                           height: 800.h,
                           width: 675.w,
                           decoration: BoxDecoration(
+                              color: AppColors.cC8151D_25,
                               borderRadius: BorderRadius.circular(20.r),
                               image: DecorationImage(
                                   colorFilter: ColorFilter.mode(
@@ -1232,6 +1233,7 @@ class _MyShopProductContentState extends State<MyShopProductContent> {
                           height: 800.h,
                           width: 675.w,
                           decoration: BoxDecoration(
+                            color: AppColors.cC8151D_25,
                               borderRadius: BorderRadius.circular(20.r),
                               image: DecorationImage(
                                   colorFilter: ColorFilter.mode(

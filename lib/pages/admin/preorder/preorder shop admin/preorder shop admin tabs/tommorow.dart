@@ -10,7 +10,7 @@ import '../../../../../utils/my_package.dart';
 import '../../../../../widgets/smalltext.dart';
 
 class TommorrowOrders extends StatelessWidget {
-  const TommorrowOrders ({Key? key}) : super(key: key);
+  const TommorrowOrders({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -29,9 +29,8 @@ class TommorrowOrders extends StatelessWidget {
           ),
         ),
         FutureBuilder<QuerySnapshot>(
-          future: FirebaseFirestore.instance
-              .collection('preorder_products')
-              .get(),
+          future:
+              FirebaseFirestore.instance.collection('preorder_products').get(),
           builder: (BuildContext context,
               AsyncSnapshot<QuerySnapshot> productsnapshot) {
             if (productsnapshot.connectionState == ConnectionState.waiting) {
@@ -69,7 +68,7 @@ class TommorrowOrders extends StatelessWidget {
                             width: 350.w,
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(20.r),
-                              color: Colors.amber,
+                              color: AppColors.cC8151D_25,
                               image: DecorationImage(
                                 image: NetworkImage(productsnapshot
                                     .data!.docs[index]
