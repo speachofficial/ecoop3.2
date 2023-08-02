@@ -41,7 +41,7 @@ class MyShopOrdersContent extends StatelessWidget {
                     )),
                 ListView.separated(
                   shrinkWrap: true,
-                  physics: NeverScrollableScrollPhysics(),
+                  physics: const NeverScrollableScrollPhysics(),
                   itemCount: (snapshot.data?.docs.length ?? 0),
                   separatorBuilder: (BuildContext context, int index) {
                     return Divider(

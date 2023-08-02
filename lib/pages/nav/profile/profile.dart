@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../../../utils/colors.dart';
 import '../../../utils/my_package.dart';
@@ -551,6 +552,14 @@ class _MainProfilePageContentState extends State<MainProfilePageContent> {
               border: Border(
                   bottom: BorderSide(width: 3.h, color: AppColors.c000000_25))),
           child: ListTile(
+            onTap: () async {
+              final url = Uri.https('forms.gle', '/hdiKypsehtbnRuE67');
+              if (await canLaunchUrl(url)) {
+                await launchUrl(
+                  url,
+                );
+              }
+            },
             leading: Icon(
               Icons.help_outline_rounded,
               size: 100.sp,
