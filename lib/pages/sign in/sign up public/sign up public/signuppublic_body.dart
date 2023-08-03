@@ -122,7 +122,7 @@ class _SignUp1BodyState extends State<SignUp1Body> {
                 return 'Required';
               } else if (!RegExp(r'^(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{8,}$')
                   .hasMatch(value)) {
-                return 'Password must have at least 1 number & capital letter';
+                return '1 number, 1 capital letter & 8 letters';
               } else {
                 return null;
               }
