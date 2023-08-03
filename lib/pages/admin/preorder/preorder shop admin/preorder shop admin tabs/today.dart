@@ -10,7 +10,7 @@ import '../../../../../utils/my_package.dart';
 import '../../../../../widgets/smalltext.dart';
 
 class TodayOrders extends StatelessWidget {
-  const TodayOrders ({Key? key}) : super(key: key);
+  const TodayOrders({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -29,9 +29,8 @@ class TodayOrders extends StatelessWidget {
           ),
         ),
         FutureBuilder<QuerySnapshot>(
-          future: FirebaseFirestore.instance
-              .collection('preorder_products')
-              .get(),
+          future:
+              FirebaseFirestore.instance.collection('preorder_products').get(),
           builder: (BuildContext context,
               AsyncSnapshot<QuerySnapshot> productsnapshot) {
             if (productsnapshot.connectionState == ConnectionState.waiting) {
@@ -129,6 +128,7 @@ class TodayOrders extends StatelessWidget {
 
     final orderSnapshot = await FirebaseFirestore.instance
         .collection('orders')
+        .where('cancelled', isEqualTo: false)
         .where('PickupTime',
             isGreaterThanOrEqualTo: DateTime(now.year, now.month, now.day)
                 .add(const Duration(days: 0))
