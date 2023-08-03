@@ -128,14 +128,13 @@ class TommorrowOrders extends StatelessWidget {
 
     final orderSnapshot = await FirebaseFirestore.instance
         .collection('orders')
-        .where('cancelled', isEqualTo: false)
         .where('PickupTime',
             isGreaterThanOrEqualTo: DateTime(now.year, now.month, now.day)
-                .add(const Duration(days: 1))
+                .add(const Duration(days: 0))
                 .toUtc())
         .where('PickupTime',
             isLessThanOrEqualTo: DateTime(now.year, now.month, now.day)
-                .add(const Duration(days: 2))
+                .add(const Duration(days: 1))
                 .toUtc())
         .get();
     for (final orderDoc in orderSnapshot.docs) {

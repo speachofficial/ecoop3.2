@@ -128,7 +128,6 @@ class TodayOrders extends StatelessWidget {
 
     final orderSnapshot = await FirebaseFirestore.instance
         .collection('orders')
-        .where('cancelled', isEqualTo: false)
         .where('PickupTime',
             isGreaterThanOrEqualTo: DateTime(now.year, now.month, now.day)
                 .add(const Duration(days: 0))
