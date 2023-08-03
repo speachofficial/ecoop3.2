@@ -315,6 +315,7 @@ class _HomePagePreOrderFoodsState extends State<HomePagePreOrderFoods> {
                                                                             "RM") *
                                                                     additemvalue
                                                               });
+                                                              additemvalue = 1;
                                                               done(context);
                                                             },
                                                             style: ElevatedButton.styleFrom(

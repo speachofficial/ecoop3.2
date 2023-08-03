@@ -237,6 +237,7 @@ class _PopularContentState extends State<PopularContent> {
                                                                   .get("RM") *
                                                               additemvalue
                                                         });
+                                                        additemvalue = 1;
                                                         done(context);
                                                       },
                                                       style: ElevatedButton.styleFrom(
