@@ -1,11 +1,14 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:ecoop3/utils/my_package.dart';
+import 'package:ecoop3/widgets/areyousure.dart';
+import 'package:ecoop3/widgets/done.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:intl/intl.dart';
 
 import '../../../../../utils/colors.dart';
 import '../../../../../widgets/bigtext.dart';
+import '../../../../../widgets/elevatedbutton.dart';
 import '../../../../../widgets/empty.dart';
 import '../../../../../widgets/exit.dart';
 import '../../../../../widgets/loadinghairil.dart';
@@ -104,8 +107,7 @@ class MyHistoryToReceiveContent extends StatelessWidget {
                                                               .receipt_long_rounded,
                                                           color: AppColors
                                                               .cC8151D_100,
-                                                          size:
-                                                              81.sp,
+                                                          size: 81.sp,
                                                         ),
                                                         SizedBox(
                                                           width: 39.w,
@@ -213,8 +215,7 @@ class MyHistoryToReceiveContent extends StatelessWidget {
                                                               .receipt_long_rounded,
                                                           color: AppColors
                                                               .cC8151D_100,
-                                                          size:
-                                                              81.sp,
+                                                          size: 81.sp,
                                                         ),
                                                         SizedBox(
                                                           width: 39.w,
@@ -427,8 +428,38 @@ class MyHistoryToReceiveContent extends StatelessWidget {
                                               SizedBox(
                                                 height: 168.h,
                                               ),
-                                              // MyElevatedButton(
-                                              //     text: 'Cancel', color: AppColors.c000000_25, onPressed: () {})
+                                              (snapshot.data!.docs[index].get(
+                                                                      "PickupTime")
+                                                                  as Timestamp)
+                                                              .toDate()
+                                                              .day -
+                                                          1 ==
+                                                      now.day
+                                                  ? MyElevatedButton(
+                                                      text: 'Cancel',
+                                                      color:
+                                                          AppColors.c000000_10,
+                                                      onPressed: () {
+                                                        areyousure(context,
+                                                            onPressedYes: () {
+                                                          FirebaseFirestore
+                                                              .instance
+                                                              .collection(
+                                                                  'orders')
+                                                              .doc(snapshot
+                                                                  .data!
+                                                                  .docs[index]
+                                                                  .get(
+                                                                      "OrderNumber"))
+                                                              .update({
+                                                            'cancelled': true
+                                                          });
+                                                          Navigator.pop(
+                                                              context);
+                                                          done(context);
+                                                        });
+                                                      })
+                                                  : Container()
                                             ],
                                           ),
                                         )

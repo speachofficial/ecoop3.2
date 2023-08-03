@@ -40,4 +40,5 @@ class AppColors {
   static const Color c000000_45 = Color.fromARGB(115, 0, 0, 0);
   static const Color c000000_30 = Color.fromARGB(77, 0, 0, 0);
   static const Color c000000_25 = Color.fromARGB(64, 0, 0, 0);
+  static const Color c000000_10 = Color.fromARGB(26, 0, 0, 0);
 }

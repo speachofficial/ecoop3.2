@@ -5,7 +5,10 @@ import 'package:intl/intl.dart';
 
 import '../../../utils/colors.dart';
 import '../../../utils/my_package.dart';
+import '../../../widgets/areyousure.dart';
 import '../../../widgets/bigtext.dart';
+import '../../../widgets/done.dart';
+import '../../../widgets/elevatedbutton.dart';
 import '../../../widgets/exit.dart';
 import '../../../widgets/loadinghairil.dart';
 import '../../../widgets/smalltext.dart';
@@ -313,8 +316,23 @@ class _MainOrderPageContentState extends State<MainOrderPageContent> {
                 SizedBox(
                   height: 168.h,
                 ),
-                // MyElevatedButton(
-                //     text: 'Cancel', color: AppColors.c000000_25, onPressed: () {})
+                (snapshot.data!.get('PickupTime') as Timestamp).toDate().day -
+                            1 ==
+                        now.day
+                    ? MyElevatedButton(
+                        text: 'Cancel',
+                        color: AppColors.c000000_10,
+                        onPressed: () {
+                          areyousure(context, onPressedYes: () {
+                            FirebaseFirestore.instance
+                                .collection('orders')
+                                .doc(snapshot.data!.get('OrderNumber'))
+                                .update({'cancelled': true});
+                            Navigator.pop(context);
+                            done(context);
+                          });
+                        })
+                    : Container(),
 
                 //   Container(
                 //     padding: EdgeInsets.symmetric(
